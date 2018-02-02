@@ -1,14 +1,15 @@
-from urllib.request import urlretrieve
+#coding=utf-8
+# from urllib.request import urlretrieve
 import numpy
 from lxml import etree
 from PIL import Image,ImageFilter
 import requests
 from bs4 import BeautifulSoup
-import train
 import os
 import re
-import pybrain_captcha
-#import test2
+
+from python import train, pybrain_captcha
+
 
 def open_img(giffile):
     img = Image.open(giffile)   #打开图片
@@ -108,24 +109,24 @@ def show_img(giffile):
     img.show()
 
 def read_captcha():
-    header={
-        'User-Agent':'Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1',
-        'Host':'login.weibo.cn'
-    }
-    url_login = 'http://login.weibo.cn/login/'
-    html = requests.get(url_login,headers=header).content  # 解析网页
-    soup = BeautifulSoup(html, 'lxml')
-    code_img = str(soup.find('img'))[24:-3]  # 获取验证码图片地址
-    print(code_img)
-    urlretrieve(code_img, r'E:\大三文件\数字图像处理\1 大作业\captcha_master1\captcha_master\main_captcha\captcha.gif')
-    show_img(r'E:\大三文件\数字图像处理\1 大作业\captcha_master1\captcha_master\main_captcha\captcha.gif')
-    remove_line(r'E:\大三文件\数字图像处理\1 大作业\captcha_master1\captcha_master\main_captcha\captcha.gif',
-                r'E:\大三文件\数字图像处理\1 大作业\captcha_master1\captcha_master\main_captcha/')
-    pic_cut('captcha_removeline.gif', 'E:/大三文件/数字图像处理/1 大作业/captcha_master1/captcha_master/main_captcha/',
-            'E:/大三文件/数字图像处理/1 大作业/captcha_master1/captcha_master/word/')
+    # header={
+    #     'User-Agent':'Mozilla/5.0 (iPad; CPU OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1',
+    #     'Host':'login.weibo.cn'
+    # }
+    # url_login = 'http://login.weibo.cn/login/'
+    # html = requests.get(url_login,headers=header).content  # 解析网页
+    # soup = BeautifulSoup(html, 'lxml')
+    # code_img = str(soup.find('img'))[24:-3]  # 获取验证码图片地址
+    # print(code_img)
+    # urlretrieve(code_img, r'E:/code/github/python/Verification-code-crack/main_captcha/captcha.gif')
+    show_img(r'E:/code/github/python/Verification-code-crack/main_captcha/captcha.gif')
+    remove_line(r'E:/code/github/python/Verification-code-crack/main_captcha/captcha.gif',
+                r'E:/code/github/python/Verification-code-crack/main_captcha/')
+    pic_cut('captcha_removeline.gif', 'E:/code/github/python/Verification-code-crack/main_captcha/',
+            'E:/code/github/python/Verification-code-crack/word/')
 
 def delete_txt():
-    filename = r'E:/大三文件/数字图像处理/1 大作业/captcha_master1/captcha_master/worddata/word_%s_data.txt'
+    filename = r'E:/code/github/python/Verification-code-crack/worddata/word_%s_data.txt'
     for i in range(1,5):
         if os.path.exists(filename%(i)):
 

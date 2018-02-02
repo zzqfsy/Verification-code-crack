@@ -1,18 +1,25 @@
+#coding=utf-8
 import numpy as np
 import os
 from pybrain.structure import *
-from pybrain.structure.modules import SoftmaxLayer
-from pybrain.supervised.trainers import BackpropTrainer
+import pybrain
+from pybrain.structure.connections.full import FullConnection
+from pybrain.structure.modules.biasunit import BiasUnit
+from pybrain.structure.modules.linearlayer import LinearLayer
+from pybrain.structure.modules.softmax import SoftmaxLayer
+from pybrain.structure.modules.tanhlayer import TanhLayer
+from pybrain.structure.networks.feedforward import FeedForwardNetwork
+from pybrain.supervised.trainers.backprop import BackpropTrainer
 from pybrain.tools.validation import Validator
 from pybrain.datasets import classification
 from sklearn.externals import joblib
 import time
 import random
 
-PKL='E:/大三文件/数字图像处理/1 大作业/captcha_master1/captcha_master/captcha_tanh.pkl'
+PKL='E:/code/github/python/Verification-code-crack/captcha_tanh.pkl'
 
 def load_data():
-    dataset=np.loadtxt('E:/大三文件/数字图像处理/1 大作业/captcha_master1/captcha_master/traindata/train_data.txt',delimiter=',')
+    dataset=np.loadtxt('E:/code/github/python/Verification-code-crack/traindata/train_data.txt',delimiter=',')
     random.shuffle(dataset)
     return dataset
 
@@ -79,7 +86,7 @@ def dealoutput(out):
 
 def predict():
     fnn=joblib.load(PKL)
-    dir='E:/大三文件/数字图像处理/1 大作业/captcha_master1/captcha_master/worddata/'
+    dir='E:/code/github/python/Verification-code-crack/worddata/'
     predictValue = []
     for fr in os.listdir(dir):
         dataset=[]

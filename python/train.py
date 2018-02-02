@@ -1,3 +1,4 @@
+#coding=utf-8
 from PIL import Image
 import os
 import random
@@ -31,7 +32,7 @@ def getf(dirs):
     return fs
 
 def writef(content):
-    with open('E:/大三文件/数字图像处理/1 大作业/captcha_master1/captcha_master/traindata/train_data.txt','a+') as f:
+    with open('E:/code/github/python/Verification-code-crack/traindata/train_data.txt','a+') as f:
         f.write(content)
         f.write('\n')
         f.close()
@@ -40,7 +41,7 @@ def writef(content):
 
 
 def GetSingleData():
-    dirs='E:/大三文件/数字图像处理/1 大作业/captcha_master1/captcha_master/word/'
+    dirs='E:/code/github/python/Verification-code-crack/word/'
     num=1
     for f in getf(dirs):
         pixs, col = getbp(f)
@@ -50,14 +51,14 @@ def GetSingleData():
         pixs = [str(i) for i in pixs]
         # print(len(pixs))
         content = ','.join(pixs)
-        with open('E:/大三文件/数字图像处理/1 大作业/captcha_master1/captcha_master/worddata/word_%s_data.txt'%num, 'a+') as f:
+        with open('E:/code/github/python/Verification-code-crack/worddata/word_%s_data.txt'%num, 'a+') as f:
             f.write(content)
             f.write('\n')
             f.close()
         num += 1
 
 if __name__=='__main__':
-    dirs='E:/大三文件/数字图像处理/1 大作业/captcha_master1/captcha_master/singlecap/%s/'
+    dirs='E:/code/github/python/Verification-code-crack/singlecap/%s/'
     iconset = ['3','c','d','e','f','h','j','k','l','m','n','w','x','y']
     for num,i in enumerate(iconset):
         for f in getf(dirs%(i)):
